@@ -13,6 +13,15 @@ from .layers.utils import concat_func
 
 DEFAULT_GROUP_NAME = "default_group"
 
+"""
+稀疏特征类的表示
+
+name: embedding名称
+vocabulary_size：embedding词表大小
+embedding_dim：embedding向量长度
+embeddings_initializer：初始化器，一般用正态分布随机初始化
+"""
+
 
 class SparseFeat(namedtuple('SparseFeat',
                             ['name', 'vocabulary_size', 'embedding_dim', 'use_hash', 'vocabulary_path', 'dtype', 'embeddings_initializer',
@@ -40,10 +49,20 @@ class SparseFeat(namedtuple('SparseFeat',
         return self.name.__hash__()
 
 
+"""
+变长特征，比如用户历史点击序列
+"""
+
+
 class VarLenSparseFeat(namedtuple('VarLenSparseFeat',
                                   ['sparsefeat', 'maxlen', 'combiner', 'length_name', 'weight_name', 'weight_norm'])):
     __slots__ = ()
 
+    """
+        sparsefeat: 原始的sparse特征
+        maxlen：变长的最大长度
+        length_name：
+    """
     def __new__(cls, sparsefeat, maxlen, combiner="mean", length_name=None, weight_name=None, weight_norm=True):
         return super(VarLenSparseFeat, cls).__new__(cls, sparsefeat, maxlen, combiner, length_name, weight_name,
                                                     weight_norm)

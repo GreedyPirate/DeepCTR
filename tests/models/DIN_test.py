@@ -16,14 +16,14 @@ def get_xy_fd(hash_flag=False):
                          length_name="seq_length")]
     # Notice: History behavior sequence feature name must start with "hist_".
     behavior_feature_list = ["item_id", "cate_id"]
-    uid = np.array([0, 1, 2])
-    ugender = np.array([0, 1, 0])
-    iid = np.array([1, 2, 3])  # 0 is mask value
-    cate_id = np.array([1, 2, 2])  # 0 is mask value
-    pay_score = np.array([0.1, 0.2, 0.3])
+    uid = np.array([0, 1, 2])  # 用户id
+    ugender = np.array([0, 1, 0]) # 用户性别
+    iid = np.array([1, 2, 3])  # 0 is mask value item_id
+    cate_id = np.array([1, 2, 2])  # 0 is mask value cate_id
+    pay_score = np.array([0.1, 0.2, 0.3])  # 成单分数 cvr？
 
-    hist_iid = np.array([[1, 2, 3, 0], [3, 2, 1, 0], [1, 2, 0, 0]])
-    hist_cate_id = np.array([[1, 2, 2, 0], [2, 2, 1, 0], [1, 2, 0, 0]])
+    hist_iid = np.array([[1, 2, 3, 0], [3, 2, 1, 0], [1, 2, 0, 0]]) # 每个用户的历史点击序列
+    hist_cate_id = np.array([[1, 2, 2, 0], [2, 2, 1, 0], [1, 2, 0, 0]]) # 每个用户的历史点击的类别序列
     seq_length = np.array([3, 3, 2])  # the actual length of the behavior sequence
 
     feature_dict = {'user': uid, 'gender': ugender, 'item_id': iid, 'cate_id': cate_id,
