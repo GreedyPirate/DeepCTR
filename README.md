@@ -134,3 +134,9 @@ If you find this code useful in your research, please cite it using the followin
     </tr>
   </tbody>
 </table>
+
+
+# 坑点
+conda install pytest-cov==2.6.0
+pip uninstall h5py
+pip install h5py==2.10.0
